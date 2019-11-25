@@ -1,6 +1,7 @@
 'use strict';
-const NUMBER_CARDS = 5;
-const EXTRA_NUMBER_FILMS = 2;
+const FILMS_NUMBER = 5;
+const NUMBER_OF_EXTRA_FILMS = 2;
+const NUMBER_OF_CATEGORIES = 2;
 const render = (container, template, position = `beforeend`) => {
   container.insertAdjacentHTML(position, template);
 };
@@ -283,7 +284,7 @@ render(siteMain, getFilms());
 
 const filmListContainer = siteMain.querySelector(`.films-list__container`);
 
-new Array(NUMBER_CARDS).fill(``).forEach(() => render(filmListContainer, getFilmCardsTemplate()));
+new Array(FILMS_NUMBER).fill(``).forEach(() => render(filmListContainer, getFilmCardsTemplate()));
 render(siteBody, getFilmDetalisTemplate());
 
 const filmDetalis = siteBody.querySelector(`.film-details`);
@@ -293,16 +294,16 @@ const filmList = siteBody.querySelector(`.films-list`);
 render(filmList, getButtonShowMoreTemplate());
 const films = siteBody.querySelector(`.films`);
 
-new Array(2).fill(``).forEach(() => render(films, getExtraFilmList()));
-const extraTittles = siteBody.querySelectorAll(`.films-list__title`);
-extraTittles[1].textContent = `Top rated`;
-extraTittles[2].textContent = `Most commented`;
+new Array(NUMBER_OF_CATEGORIES).fill(``).forEach(() => render(films, getExtraFilmList()));
+const extraTitles = siteBody.querySelectorAll(`.films-list__title`);
+extraTitles[1].textContent = `Top rated`;
+extraTitles[2].textContent = `Most commented`;
 
 const extraFilms = siteBody.querySelectorAll(`.films-list--extra`);
 const extraFilmsContainerRated = extraFilms[0].querySelector(`.films-list__container`);
 const extraFilmsContainerCommented = extraFilms[1].querySelector(`.films-list__container`);
 
-new Array(EXTRA_NUMBER_FILMS).fill(``).forEach(() => render(extraFilmsContainerRated, getFilmCardsTemplate()));
-new Array(EXTRA_NUMBER_FILMS).fill(``).forEach(() => render(extraFilmsContainerCommented, getFilmCardsTemplate()));
+new Array(NUMBER_OF_EXTRA_FILMS).fill(``).forEach(() => render(extraFilmsContainerRated, getFilmCardsTemplate()));
+new Array(NUMBER_OF_EXTRA_FILMS).fill(``).forEach(() => render(extraFilmsContainerCommented, getFilmCardsTemplate()));
 
 
