@@ -3,7 +3,7 @@ import {getButtonShowMoreTemplate} from "./components/show-more-button";
 import {getFilmCardsTemplate} from "./components/film-card";
 import {getFilms} from "./components/film-container";
 import {getFilmDetalisTemplate} from "./components/film-detalis";
-import {getMainNavTemplate} from "./components/site-navigation";
+import {getMainNavTemplate} from "./components/navigation";
 import {getProfileHeaderTemplate} from "./components/profile";
 import {getSortTemplate} from "./components/sorting";
 import {getStatisticTemplate} from "./components/statistic";
