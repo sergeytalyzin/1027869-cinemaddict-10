@@ -1,6 +1,6 @@
 import {getExtraFilmList} from "./components/film-extra";
 import {getButtonShowMoreTemplate} from "./components/show-more-button";
-import {getFilmCardsTemplate} from "./components/film-cards";
+import {getFilmCardsTemplate} from "./components/film-card";
 import {getFilms} from "./components/film-container";
 import {getFilmDetalisTemplate} from "./components/film-detalis";
 import {getMainNavTemplate} from "./components/site-navigation";
