@@ -2,7 +2,7 @@ import {Genre, getRandomArray, getRandomNumber} from "../mock/card";
 import {DetailsNames} from "../mock/card-details";
 import {getRandomDate} from "../util";
 
-const Emoji = [`sleeping.png`, `smile.png`, `puke.png`, `angry.png`];
+const EMOJI = [`sleeping.png`, `smile.png`, `puke.png`, `angry.png`];
 const Comments = [`Шляпа `,
   `Не согласен сам ты шляпа`,
   `Крутой фильм`,
@@ -14,20 +14,20 @@ const Comments = [`Шляпа `,
 
 const generateComment = () => {
   return {
-    emoji: getRandomArray(Emoji),
+    emoji: getRandomArray(EMOJI),
     comment: getRandomArray(Comments),
     author: getRandomArray(DetailsNames),
     date: getRandomDate(),
   };
 };
 
-const generateArrayComment = (count) => {
+const generateComments = (count) => {
   return new Array(count)
     .fill(``)
     .map(generateComment);
 };
 
-const arrayComments = generateArrayComment(5);
+const arrayComments = generateComments(5);
 const createComment = (array) => {
   return array.map((it) => {
     const {emoji, comment, author, date} = it;
@@ -47,7 +47,7 @@ const createComment = (array) => {
   });
 };
 
-const createGenre = (array) => {
+const createGenres = (array) => {
   return [...array].map((it) => {
     return (`<span class="film-details__genre">${it}</span>`);
   }).join(`\n`);
@@ -63,10 +63,10 @@ const generateFilmGenre = () => {
 const newGenre = generateFilmGenre();
 
 
-export const getFilmDetalisTemplate = (card, cardDetails) => {
-  const {description, title, rating, duration, poster, comment, age} = card;
-  const {director, writers, actors, releaseDate} = cardDetails;
-  const genre = createGenre(newGenre);
+export const getFilmDetailsTemplate = (filmCard, filmCardAdditionalInfo) => {
+  const {description, title, rating, duration, poster, comment, age} = filmCard;
+  const {director, writers, actors, releaseDate} = filmCardAdditionalInfo;
+  const genre = createGenres(newGenre);
   const commentFilm = createComment(arrayComments);
 
   return (`<section class="film-details">

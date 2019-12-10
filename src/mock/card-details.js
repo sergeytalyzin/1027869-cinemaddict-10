@@ -1,7 +1,7 @@
 import {getRandomNumber} from "./card";
 import {getRandomArray} from "./card";
 
-const MonthNames = [
+const MONTHNAMES = [
   `January`,
   `February`,
   `March`,
@@ -18,19 +18,19 @@ const MonthNames = [
 const DetailsNames = [`Frank Sinatra`, `John Mason`, `Anthony Mann`, `Bred Pitt`, `Heinz Herald`, `Richard Weil`, `Anne Wigton`,
   `Erich von Stroheim`, `Mary Beth Hughes`, `Dan Duryea`];
 
-const generateListName = (names) => {
+const generateListNames = (names) => {
   return names.filter(()=> Math.random() > 0.5);
 };
 
 const generateDate = () => {
-  return `${getRandomNumber(1, 30)}  ${getRandomArray(MonthNames)}  ${getRandomNumber(1940, 2019)}`;
+  return `${getRandomNumber(1, 30)}  ${getRandomArray(MONTHNAMES)}  ${getRandomNumber(1940, 2019)}`;
 };
 
 const generateTable = () => {
   return {
     director: getRandomArray(DetailsNames),
-    writers: new Set(generateListName(DetailsNames)),
-    actors: new Set(generateListName(DetailsNames)),
+    writers: new Set(generateListNames(DetailsNames)),
+    actors: new Set(generateListNames(DetailsNames)),
     releaseDate: generateDate(),
   };
 };

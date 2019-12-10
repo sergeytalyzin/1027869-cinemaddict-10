@@ -14,7 +14,7 @@ const getFilterStatistic = (filter, isChecked) => {
 export const getStatisticTemplate = (filters) => {
 
 
-  const filterStatistic = filters.map((it, i) => getFilterStatistic(it, i === 0)).join(`\n`);
+  const filterStatistic = filters.map((filter, i) => getFilterStatistic(filter, i === 0)).join(`\n`);
 
 
   return (`<section class="statistic">

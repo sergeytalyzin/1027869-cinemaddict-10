@@ -2,7 +2,7 @@ import {getExtraFilmList} from "./components/film-extra";
 import {getButtonShowMoreTemplate} from "./components/show-more-button";
 import {getFilmCardsTemplate} from "./components/film-card";
 import {getFilms} from "./components/film-container";
-import {getFilmDetalisTemplate} from "./components/film-detalis";
+import {getFilmDetailsTemplate} from "./components/film-detalis";
 import {getMainNavTemplate} from "./components/navigation";
 import {getProfileHeaderTemplate} from "./components/profile";
 import {getSortTemplate} from "./components/sorting";
@@ -40,7 +40,7 @@ let showingCardsCount = CARDS_INDICATOR;
 cards.slice(0, showingCardsCount).forEach((card) => render(filmListContainer, getFilmCardsTemplate(card)));
 
 const cardDetails = generateTable();
-render(siteBody, getFilmDetalisTemplate(cards[1], cardDetails));
+render(siteBody, getFilmDetailsTemplate(cards[1], cardDetails));
 
 const filmDetalis = siteBody.querySelector(`.film-details`);
 filmDetalis.setAttribute(`style`, `display:none;`);
