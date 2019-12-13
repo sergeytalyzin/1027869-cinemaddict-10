@@ -20,7 +20,7 @@ const Posters = [`made-for-each-other.png`,
   `the-great-flamarion.jpg`,
   `the-man-with-the-golden-arm.jpg`
 ];
-const Ages = [`0+`, `12+`, `16+`, `18+`];
+const AGES = [`0+`, `12+`, `16+`, `18+`];
 const Genre = [`Musical`, `Western`, `Comedy`, `Drama`, `Cartoon`, `Mystery`];
 
 const Description = [`Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
@@ -75,7 +75,7 @@ const generateCard = () => {
     poster: getRandomArray(Posters),
     description: getRandomDescription(),
     comment: getRandomNumber(1, 10),
-    age: getRandomArray(Ages)
+    age: getRandomArray(AGES)
   };
 };
 

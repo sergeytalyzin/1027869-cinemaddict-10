@@ -2,6 +2,7 @@ import {Genre, getRandomArray, getRandomNumber} from "../mock/card";
 import {DetailsNames} from "../mock/card-details";
 import {getRandomDate} from "../util";
 
+const NUMBER_OF_ADDITIVES = 5;
 const EMOJI = [`sleeping.png`, `smile.png`, `puke.png`, `angry.png`];
 const Comments = [`Шляпа `,
   `Не согласен сам ты шляпа`,
@@ -27,7 +28,7 @@ const generateComments = (count) => {
     .map(generateComment);
 };
 
-const arrayComments = generateComments(5);
+const arrayComments = generateComments(NUMBER_OF_ADDITIVES);
 const createComment = (array) => {
   return array.map((it) => {
     const {emoji, comment, author, date} = it;

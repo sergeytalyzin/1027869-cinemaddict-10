@@ -1,7 +1,7 @@
 import {getRandomNumber} from "./card";
 import {getRandomArray} from "./card";
 
-const MONTHNAMES = [
+const MONTH_NAMES = [
   `January`,
   `February`,
   `March`,
