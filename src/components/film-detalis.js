@@ -4,7 +4,7 @@ import {getRandomDate} from "../util";
 
 const NUMBER_OF_ADDITIVES = 5;
 const EMOJI = [`sleeping.png`, `smile.png`, `puke.png`, `angry.png`];
-const Comments = [`Шляпа `,
+const COMMENTS = [`Шляпа `,
   `Не согласен сам ты шляпа`,
   `Крутой фильм`,
   `Да это колыбельная для моих детей)))))`,
@@ -16,7 +16,7 @@ const Comments = [`Шляпа `,
 const generateComment = () => {
   return {
     emoji: getRandomArray(EMOJI),
-    comment: getRandomArray(Comments),
+    comment: getRandomArray(COMMENTS),
     author: getRandomArray(DetailsNames),
     date: getRandomDate(),
   };

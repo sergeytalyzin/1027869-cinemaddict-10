@@ -23,7 +23,7 @@ const generateListNames = (names) => {
 };
 
 const generateDate = () => {
-  return `${getRandomNumber(1, 30)}  ${getRandomArray(MONTHNAMES)}  ${getRandomNumber(1940, 2019)}`;
+  return `${getRandomNumber(1, 30)}  ${getRandomArray(MONTH_NAMES)}  ${getRandomNumber(1940, 2019)}`;
 };
 
 const generateTable = () => {
