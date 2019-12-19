@@ -1,4 +1,6 @@
 import {getRandomNumber} from "../mock/card";
+import {createElement} from "../util";
+
 const numberMovies = getRandomNumber(1, 1000);
 
 const getFilterStatistic = (filter, isChecked) => {
@@ -50,3 +52,24 @@ export const getStatisticTemplate = (filters) => {
 
   </section>`);
 };
+
+export default class Statistic {
+  constructor(filters) {
+    this._filters = filters;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return getStatisticTemplate(this._filters);
+  }
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+    return this._element;
+  }
+}
+
+
+
+
