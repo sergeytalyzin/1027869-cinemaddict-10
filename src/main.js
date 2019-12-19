@@ -14,24 +14,20 @@ import {generateTable} from "./mock/card-details";
 import {render} from "./util";
 
 
-const FILMS_TIMES = 0;
+const FILMS_TIMES = 22;
 const CARDS_INDICATOR = 5;
 const CARDS_INDICATOR_EXTRA = 2;
 const CATEGORIES_NUMBER = 2;
 const CARD_BUTTON = 5;
 const ESCAPE_KEY = 27;
-// const render = (container, template, position = `beforeend`) => {
-//   container.insertAdjacentHTML(position, template);
-// };
+
 
 const siteBody = document.querySelector(`body`);
 const header = document.querySelector(`.header`);
 const siteMain = document.querySelector(`.main`);
 
 const renderCard = (container, card, cardEditionInfo) => {
-
   const filmCard = new FilmCard(card).getElement();
-
   const title = filmCard.querySelector(`.film-card__title`);
   const comments = filmCard.querySelector(`.film-card__comments`);
   const poster = filmCard.querySelector(`.film-card__poster`);
@@ -43,12 +39,15 @@ const renderCard = (container, card, cardEditionInfo) => {
         document.removeEventListener(`keydown`, onEscKeyDown);
       }
     };
+
     const popup = new FilmDetalis(card, cardEditionInfo).getElement();
     render(siteBody, popup);
+
     const closePopup = () => {
       siteBody.removeChild(popup);
       button.removeEventListener(`click`, closePopup);
     };
+
     const button = popup.querySelector(`.film-details__close-btn`);
     button.addEventListener(`click`, closePopup);
     document.addEventListener(`keydown`, onEscKeyDown);
@@ -67,8 +66,6 @@ const filter = generateFilterStatistic();
 render(siteMain, new Statistic(filter).getElement());
 render(siteMain, new Sorting().getElement());
 
-
-const filmListContainer = siteMain.querySelector(`.films-list__container`);
 const cards = generateCardsFilms(FILMS_TIMES);
 
 
@@ -78,6 +75,7 @@ if (cards.length < 1) {
   render(siteMain, new NoFilms().getElement());
 } else {
   render(siteMain, new FilmContainer().getElement());
+  const filmListContainer = siteMain.querySelector(`.films-list__container`);
   let showingCardsCount = CARDS_INDICATOR;
   cards.slice(0, showingCardsCount).forEach((card) => renderCard(filmListContainer, card, cardDetails));
 
