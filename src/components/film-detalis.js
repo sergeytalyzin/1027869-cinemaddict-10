@@ -195,8 +195,8 @@ export default class FilmDetalis {
     this._filmCardAdditionalInfo = filmCardAdditionalInfo;
     this._element = null;
   }
-  getTemplate () {
-    return getFilmDetailsTemplate(this._filmCard,this._filmCardAdditionalInfo);
+  getTemplate() {
+    return getFilmDetailsTemplate(this._filmCard, this._filmCardAdditionalInfo);
   }
   getElement() {
     if (!this._element) {
@@ -204,7 +204,7 @@ export default class FilmDetalis {
     }
     return this._element;
   }
-  removeElement () {
+  removeElement() {
     this._element = null;
   }
 }

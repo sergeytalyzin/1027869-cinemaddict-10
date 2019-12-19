@@ -23,7 +23,7 @@ export const getFilmCardsTemplate = (card) => {
 };
 
 export default class Card {
-  constructor (card) {
+  constructor(card) {
     this._card = card;
     this._element = null;
   }
@@ -33,7 +33,7 @@ export default class Card {
   }
 
   getElement() {
-    if(!this._element) {
+    if (!this._element) {
       this._element = createElement(this.getTemplate());
     }
     return this._element;

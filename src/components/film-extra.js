@@ -7,7 +7,7 @@ export const getExtraFilmList = () => `<section class="films-list--extra">
     </section>`;
 
 export default class FilmExtra {
-  constructor () {
+  constructor() {
     this._element = null;
   }
 
@@ -15,8 +15,8 @@ export default class FilmExtra {
     return getExtraFilmList();
   }
 
-  getElement(){
-    if(!this._element) {
+  getElement() {
+    if (!this._element) {
       this._element = createElement(this.getTemplate());
     }
     return this._element;

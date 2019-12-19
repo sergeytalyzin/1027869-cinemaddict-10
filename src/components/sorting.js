@@ -7,15 +7,15 @@ export const getSortTemplate = () => `<ul class="sort">
   </ul>`;
 
 export default class Sorting {
-  constructor () {
+  constructor() {
     this._element = null;
   }
 
-  getTemplate () {
+  getTemplate() {
     return getSortTemplate();
   }
 
-  getElement () {
+  getElement() {
     if (!this._element) {
       this._element = createElement(this.getTemplate());
     }

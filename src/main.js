@@ -27,7 +27,7 @@ const header = document.querySelector(`.header`);
 const siteMain = document.querySelector(`.main`);
 
 const renderCard = (container, card, cardEditionInfo) => {
- const filmCard =  new FilmCard(card).getElement();
+  const filmCard = new FilmCard(card).getElement();
 
   const title = filmCard.querySelector(`.film-card__title`);
   const comments = filmCard.querySelector(`.film-card__comments`);
@@ -79,8 +79,8 @@ const extraFilms = siteBody.querySelectorAll(`.films-list--extra`);
 const extraFilmsContainerRated = extraFilms[0].querySelector(`.films-list__container`);
 const extraFilmsContainerCommented = extraFilms[1].querySelector(`.films-list__container`);
 
-cards.slice(0, CARDS_INDICATOR_EXTRA).forEach((card) => renderCard(extraFilmsContainerRated,card));
-cards.slice(0, CARDS_INDICATOR_EXTRA).forEach((card) => renderCard(extraFilmsContainerCommented,card));
+cards.slice(0, CARDS_INDICATOR_EXTRA).forEach((card) => renderCard(extraFilmsContainerRated, card));
+cards.slice(0, CARDS_INDICATOR_EXTRA).forEach((card) => renderCard(extraFilmsContainerCommented, card));
 
 const showMoreButton = siteMain.querySelector(`.films-list__show-more`);
 

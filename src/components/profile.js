@@ -6,10 +6,10 @@ export const getProfileHeaderTemplate = () => `<section class="header__profile p
   </section>`;
 
 export default class Profile {
-  constructor () {
+  constructor() {
     this._element = null;
   }
-  getTemplate () {
+  getTemplate() {
     return getProfileHeaderTemplate();
   }
 
