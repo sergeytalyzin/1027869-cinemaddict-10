@@ -18,9 +18,6 @@ const CARDS_INDICATOR = 5;
 const CARDS_INDICATOR_EXTRA = 2;
 const CATEGORIES_NUMBER = 2;
 const CARD_BUTTON = 5;
-// const render = (container, template, position = `beforeend`) => {
-//   container.insertAdjacentHTML(position, template);
-// };
 
 const siteBody = document.querySelector(`body`);
 const header = document.querySelector(`.header`);
