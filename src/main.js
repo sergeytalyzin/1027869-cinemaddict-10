@@ -1,5 +1,5 @@
 import FilmExtra from "./components/film-extra";
-import ShoweMoreButton from "./components/show-more-button";
+import ShowMoreButton from "./components/show-more-button";
 import FilmCard from "./components/film-card";
 import FilmContainer from "./components/film-container";
 import FilmDetalis from "./components/film-detalis";
@@ -80,7 +80,7 @@ if (cards.length < 1) {
   cards.slice(0, showingCardsCount).forEach((card) => renderCard(filmListContainer, card, cardDetails));
 
   const filmList = siteBody.querySelector(`.films-list`);
-  render(filmList, new ShoweMoreButton().getElement());
+  render(filmList, new ShowMoreButton().getElement());
   const films = siteBody.querySelector(`.films`);
 
   new Array(CATEGORIES_NUMBER).fill(``).forEach(() => render(films, new FilmExtra().getElement()));
