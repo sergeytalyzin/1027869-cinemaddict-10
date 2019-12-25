@@ -19,8 +19,8 @@ const CARDS_INDICATOR = 5;
 const CARDS_INDICATOR_EXTRA = 2;
 const CATEGORIES_NUMBER = 2;
 const CARD_BUTTON = 5;
-const ESCAPE_KEY = 27;
 
+const ESCAPE_KEY = 27;
 
 const siteBody = document.querySelector(`body`);
 const header = document.querySelector(`.header`);
@@ -71,6 +71,7 @@ const cards = generateCardsFilms(FILMS_TIMES);
 
 const cardDetails = generateTable();
 
+
 if (cards.length < 1) {
   render(siteMain, new NoFilms().getElement());
 } else {
@@ -106,3 +107,4 @@ if (cards.length < 1) {
     }
   });
 }
+
