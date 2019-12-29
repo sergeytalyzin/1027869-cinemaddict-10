@@ -1,7 +1,7 @@
 import {Genre, getRandomArray, getRandomNumber} from "../mock/card";
 import {DetailsNames} from "../mock/card-details";
-import {createElement, getRandomDate} from "../util";
-
+import {getRandomDate} from "../util";
+import AbstractComponent from "./abstract-component";
 const NUMBER_OF_ADDITIVES = 5;
 const EMOJI = [`sleeping.png`, `smile.png`, `puke.png`, `angry.png`];
 const COMMENTS = [`Шляпа `,
@@ -189,22 +189,13 @@ export const getFilmDetailsTemplate = (filmCard, filmCardAdditionalInfo) => {
 </section>`);
 };
 
-export default class FilmDetalis {
+export default class FilmDetalis extends AbstractComponent {
   constructor(filmCard, filmCardAdditionalInfo) {
+    super();
     this._filmCard = filmCard;
     this._filmCardAdditionalInfo = filmCardAdditionalInfo;
-    this._element = null;
   }
   getTemplate() {
     return getFilmDetailsTemplate(this._filmCard, this._filmCardAdditionalInfo);
-  }
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-    return this._element;
-  }
-  removeElement() {
-    this._element = null;
   }
 }

@@ -1,4 +1,4 @@
-import {createElement} from "../util";
+import AbstractComponent from "./abstract-component";
 
 export const getFilmCardsTemplate = (card) => {
 
@@ -22,20 +22,12 @@ export const getFilmCardsTemplate = (card) => {
         </article>`);
 };
 
-export default class Card {
+export default class Card extends AbstractComponent {
   constructor(card) {
+    super();
     this._card = card;
-    this._element = null;
   }
-
   getTemplate() {
     return getFilmCardsTemplate(this._card);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-    return this._element;
   }
 }
