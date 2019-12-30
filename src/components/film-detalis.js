@@ -1,6 +1,6 @@
 import {Genre, getRandomArray, getRandomNumber} from "../mock/card";
 import {DetailsNames} from "../mock/card-details";
-import {getRandomDate} from "../util";
+import {getRandomDate} from "../utils/time";
 import AbstractComponent from "./abstract-component";
 const NUMBER_OF_ADDITIVES = 5;
 const EMOJI = [`sleeping.png`, `smile.png`, `puke.png`, `angry.png`];
