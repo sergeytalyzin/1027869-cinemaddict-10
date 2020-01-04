@@ -26,7 +26,6 @@ const renderCard = (container, card, cardEditionInfo) => {
     const onEscKeyDown = (evt) => {
       if (evt.keyCode === ESCAPE_KEY) {
         closePopup();
-        document.removeEventListener(`keydown`, onEscKeyDown);
       }
     };
 
@@ -36,6 +35,7 @@ const renderCard = (container, card, cardEditionInfo) => {
     const closePopup = () => {
       siteBody.removeChild(popup);
       button.removeEventListener(`click`, closePopup);
+      document.removeEventListener(`keydown`, onEscKeyDown);
     };
 
     const button = popup.querySelector(`.film-details__close-btn`);
@@ -66,7 +66,7 @@ export default class PageController {
       this._showMoreComponent.setShowMoreButtonClickHandler(() => {
         const prevCardsShowing = showingCardsCount;
         showingCardsCount = showingCardsCount + CARD_BUTTON;
-        cards.slice(prevCardsShowing, showingCardsCount).forEach((card) => renderCard(container, card));
+        cards.slice(prevCardsShowing, showingCardsCount).forEach((card) => renderCard(container, card, cardDetails));
         if (showingCardsCount >= cards.length) {
           remove(this._showMoreComponent);
         }
@@ -93,8 +93,8 @@ export default class PageController {
     const extraFilmsContainerRated = extraFilms[0].querySelector(`.films-list__container`);
     const extraFilmsContainerCommented = extraFilms[1].querySelector(`.films-list__container`);
 
-    cards.slice(0, CARDS_INDICATOR_EXTRA).forEach((card) => renderCard(extraFilmsContainerRated, card));
-    cards.slice(0, CARDS_INDICATOR_EXTRA).forEach((card) => renderCard(extraFilmsContainerCommented, card));
+    cards.slice(0, CARDS_INDICATOR_EXTRA).forEach((card) => renderCard(extraFilmsContainerRated, card, cardDetails));
+    cards.slice(0, CARDS_INDICATOR_EXTRA).forEach((card) => renderCard(extraFilmsContainerCommented, card, cardDetails));
     renderShowMoreButton();
   }
 }
