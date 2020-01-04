@@ -1,5 +1,4 @@
 import Navigation from "./components/navigation";
-import Sorting from "./components/sorting";
 import Statistic from "./components/statistic";
 import Profile from "./components/profile";
 import {generateCardsFilms} from "./mock/card";
@@ -18,7 +17,7 @@ render(header, new Profile().getElement());
 render(siteMain, new Navigation().getElement());
 const filter = generateFilterStatistic();
 render(siteMain, new Statistic(filter).getElement());
-render(siteMain, new Sorting().getElement());
+
 
 const cards = generateCardsFilms(FILMS_TIMES);
 const pageController = new PageController();
