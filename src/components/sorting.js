@@ -34,11 +34,11 @@ export default class Sorting extends AbstractComponent {
       if (evt.target.tagName !== `A`) {
         return;
       }
-      const sortType = evt.target.dataset.sortType;
-      if (this._currenSortType === sortType) {
+      const sortName = evt.target.dataset.sortType;
+      if (this._currenSortType === sortName) {
         return;
       }
-      this._currenSortType = sortType;
+      this._currenSortType = sortName;
       evt.target.classList.add(`sort__button--active`);
       this.save = evt.target;
       handler(this._currenSortType);
