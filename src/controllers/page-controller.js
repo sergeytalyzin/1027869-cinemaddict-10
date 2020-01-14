@@ -13,7 +13,6 @@ const CARDS_INDICATOR = 5;
 const CARDS_INDICATOR_EXTRA = 2;
 const CATEGORIES_NUMBER = 2;
 const CARD_BUTTON = 5;
-
 const ESCAPE_KEY = 27;
 
 const siteBody = document.querySelector(`body`);
