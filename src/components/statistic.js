@@ -1,5 +1,5 @@
 import {getRandomNumber} from "../mock/card";
-import {createElement} from "../util";
+import AbstractComponent from "./abstract-component";
 
 const numberMovies = getRandomNumber(1, 1000);
 
@@ -53,20 +53,13 @@ export const getStatisticTemplate = (filters) => {
   </section>`);
 };
 
-export default class Statistic {
+export default class Statistic extends AbstractComponent {
   constructor(filters) {
+    super();
     this._filters = filters;
-    this._element = null;
   }
-
   getTemplate() {
     return getStatisticTemplate(this._filters);
-  }
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-    return this._element;
   }
 }
 
