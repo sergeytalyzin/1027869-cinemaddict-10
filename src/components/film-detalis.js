@@ -1,7 +1,7 @@
 import {Genre, getRandomArray, getRandomNumber} from "../mock/card";
 import {DetailsNames} from "../mock/card-details";
 import {getRandomDate} from "../utils/time";
-import AbstractComponent from "./abstract-component";
+import AbstractSmartComponent from "./abstract-smart-component";
 const NUMBER_OF_ADDITIVES = 5;
 const EMOJI = [`sleeping.png`, `smile.png`, `puke.png`, `angry.png`];
 const COMMENTS = [`Шляпа `,
@@ -65,7 +65,7 @@ const newGenre = generateFilmGenre();
 
 
 export const getFilmDetailsTemplate = (filmCard, filmCardAdditionalInfo) => {
-  const {description, title, rating, duration, poster, comment, age} = filmCard;
+  const {description, title, rating, duration, poster, comment, age, favorite} = filmCard;
   const {director, writers, actors, releaseDate} = filmCardAdditionalInfo;
   const genre = createGenres(newGenre);
   const commentFilm = createComment(arrayComments);
@@ -142,7 +142,7 @@ export const getFilmDetailsTemplate = (filmCard, filmCardAdditionalInfo) => {
         <label for="watched" class="film-details__control-label film-details__control-label--watched">Already watched</label>
 
         <input type="checkbox" class="film-details__control-input visually-hidden" id="favorite" name="favorite">
-        <label for="favorite" class="film-details__control-label film-details__control-label--favorite">Add to favorites</label>
+        <label for="favorite" class="film-details__control-label film-details__control-label--favorite">Add ${favorite ? `X` : ``}to favorites</label>
       </section>
     </div>
 
@@ -189,7 +189,7 @@ export const getFilmDetailsTemplate = (filmCard, filmCardAdditionalInfo) => {
 </section>`);
 };
 
-export default class FilmDetalis extends AbstractComponent {
+export default class FilmDetalis extends AbstractSmartComponent {
   constructor(filmCard, filmCardAdditionalInfo) {
     super();
     this._filmCard = filmCard;
@@ -197,5 +197,25 @@ export default class FilmDetalis extends AbstractComponent {
   }
   getTemplate() {
     return getFilmDetailsTemplate(this._filmCard, this._filmCardAdditionalInfo);
+  }
+
+  rerender() {
+    super.rerender();
+  }
+
+  recoveryListeners() {
+
+  }
+
+  setAddToWatchlistListener(handler) {
+    this.getElement().querySelector(`.film-details__control-label--watchlist`).addEventListener(`click`, handler);
+  }
+
+  setWatchedListener(handler) {
+    this.getElement().querySelector(`.film-details__control-label--watched`).addEventListener(`click`, handler);
+  }
+
+  setAddToFavoritesListener(handler) {
+    this.getElement().querySelector(`.film-details__control-label--favorite`).addEventListener(`click`, handler);
   }
 }

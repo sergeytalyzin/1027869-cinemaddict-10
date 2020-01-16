@@ -75,7 +75,10 @@ const generateCard = () => {
     poster: getRandomArray(Posters),
     description: getRandomDescription(),
     comment: getRandomNumber(1, 10),
-    age: getRandomArray(AGES)
+    age: getRandomArray(AGES),
+    watchlist: Math.random() > 0.5,
+    watched: Math.random() > 0.5,
+    favorite: Math.random() > 0.5
   };
 };
 
