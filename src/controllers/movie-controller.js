@@ -1,5 +1,5 @@
 import FilmCard from "../components/film-card";
-import FilmDetalis from "../components/film-detalis";
+import FilmDetails from "../components/film-details";
 import {render, replace} from "../utils/render";
 const siteBody = document.querySelector(`body`);
 
@@ -19,7 +19,7 @@ export default class MovieController {
     const filmCard = this._filmCardComponent.getElement();
 
     const oldPopupComponent = this._popupComponent;
-    this._popupComponent = new FilmDetalis(card, this._cardEditionInfo);
+    this._popupComponent = new FilmDetails(card, this._cardEditionInfo);
     const popup = this._popupComponent.getElement();
 
 

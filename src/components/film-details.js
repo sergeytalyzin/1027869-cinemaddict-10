@@ -2,6 +2,7 @@ import {Genre, getRandomArray, getRandomNumber} from "../mock/card";
 import {DetailsNames} from "../mock/card-details";
 import {getRandomDate} from "../utils/time";
 import AbstractSmartComponent from "./abstract-smart-component";
+import FilmDetailsWithRating from "./film-details-with-rating";
 const NUMBER_OF_ADDITIVES = 5;
 const EMOJI = [`sleeping.png`, `smile.png`, `puke.png`, `angry.png`];
 const COMMENTS = [`Шляпа `,
@@ -64,12 +65,13 @@ const generateFilmGenre = () => {
 const newGenre = generateFilmGenre();
 
 
-export const getFilmDetailsTemplate = (filmCard, filmCardAdditionalInfo) => {
+export const getFilmDetailsTemplate = (filmCard, filmCardAdditionalInfo, options = {}) => {
   const {description, title, rating, duration, poster, comment, age, favorite} = filmCard;
   const {director, writers, actors, releaseDate} = filmCardAdditionalInfo;
+  const {isFilmDetailsWithRating} = options;
   const genre = createGenres(newGenre);
   const commentFilm = createComment(arrayComments);
-
+  console.log(`1`, isFilmDetailsWithRating);
   return (`<section class="film-details">
 <form class="film-details__inner" action="" method="get">
     <div class="form-details__top-container">
@@ -145,7 +147,7 @@ export const getFilmDetailsTemplate = (filmCard, filmCardAdditionalInfo) => {
         <label for="favorite" class="film-details__control-label film-details__control-label--favorite">Add ${favorite ? `X` : ``}to favorites</label>
       </section>
     </div>
-
+    ${isFilmDetailsWithRating ? isFilmDetailsWithRating : `` };
     <div class="form-details__bottom-container">
       <section class="film-details__comments-wrap">
         <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${comment}</span></h3>
@@ -189,14 +191,18 @@ export const getFilmDetailsTemplate = (filmCard, filmCardAdditionalInfo) => {
 </section>`);
 };
 
-export default class FilmDetalis extends AbstractSmartComponent {
+export default class FilmDetails extends AbstractSmartComponent {
   constructor(filmCard, filmCardAdditionalInfo) {
     super();
     this._filmCard = filmCard;
     this._filmCardAdditionalInfo = filmCardAdditionalInfo;
+    this._isFilmDetailsWithRating = null;
+    this.recoveryListeners();
   }
   getTemplate() {
-    return getFilmDetailsTemplate(this._filmCard, this._filmCardAdditionalInfo);
+    return getFilmDetailsTemplate(this._filmCard, this._filmCardAdditionalInfo, {
+      isFilmDetailsWithRating: this._isFilmDetailsWithRating,
+    });
   }
 
   rerender() {
@@ -204,7 +210,14 @@ export default class FilmDetalis extends AbstractSmartComponent {
   }
 
   recoveryListeners() {
-
+    const element = this.getElement();
+    const xxx = new FilmDetailsWithRating().getElement();
+    element.querySelector(`.film-details__control-label--watched`)
+      .addEventListener(`click`, () => {
+        this._isFilmDetailsWithRating = xxx;
+        this.rerender();
+      });
+    console.log(`2`, this._isFilmDetailsWithRating);
   }
 
   setAddToWatchlistListener(handler) {
