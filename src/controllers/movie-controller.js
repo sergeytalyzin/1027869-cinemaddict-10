@@ -5,9 +5,9 @@ const siteBody = document.querySelector(`body`);
 
 const ESCAPE_KEY = 27;
 export default class MovieController {
-  constructor(container, cardEditionInfo, onDataChange) {
+  constructor(container, onDataChange) {
     this._container = container;
-    this._cardEditionInfo = cardEditionInfo;
+
     this._onDataChange = onDataChange;
     this._filmCardComponent = null;
     this._popupComponent = null;
@@ -19,7 +19,7 @@ export default class MovieController {
     const filmCard = this._filmCardComponent.getElement();
 
     const oldPopupComponent = this._popupComponent;
-    this._popupComponent = new FilmDetails(card, this._cardEditionInfo);
+    this._popupComponent = new FilmDetails(card);
     const popup = this._popupComponent.getElement();
 
 
@@ -31,7 +31,7 @@ export default class MovieController {
       };
       render(siteBody, popup);
       const closePopup = () => {
-        popup.remove();
+        siteBody.removeChild(popup);
         button.removeEventListener(`click`, closePopup);
         document.removeEventListener(`keydown`, onEscKeyDown);
       };
