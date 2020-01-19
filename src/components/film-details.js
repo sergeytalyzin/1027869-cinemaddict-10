@@ -70,7 +70,7 @@ export const getFilmDetailsTemplate = (filmCard, options = {}) => {
   const {isFilmDetailsWithRating} = options;
   const genre = createGenres(newGenre);
   const commentFilm = createComment(arrayComments);
-  console.log(`1`, isFilmDetailsWithRating);
+
   return (`<section class="film-details">
 <form class="film-details__inner" action="" method="get">
     <div class="form-details__top-container">
@@ -209,9 +209,9 @@ export default class FilmDetails extends AbstractSmartComponent {
 
   recoveryListeners() {
     if (this._filmCard.watched && !this._isFilmDetailsWithRating) {
-       this._isFilmDetailsWithRating = new FilmDetailsWithRating().getTemplate();
-       this.rerender();
-     }
+      this._isFilmDetailsWithRating = new FilmDetailsWithRating().getTemplate();
+      this.rerender();
+    }
   }
 
 
