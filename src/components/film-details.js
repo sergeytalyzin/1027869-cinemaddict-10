@@ -5,6 +5,12 @@ import AbstractSmartComponent from "./abstract-smart-component";
 import FilmDetailsWithRating from "./film-details-with-rating";
 const NUMBER_OF_ADDITIVES = 5;
 const EMOJI = [`sleeping.png`, `smile.png`, `puke.png`, `angry.png`];
+export const Emoji = {
+  SMILE: `smile`,
+  PUKE: `puke`,
+  SLEEPING: `sleeping`,
+  ANGRY: `angry`
+};
 const COMMENTS = [`Шляпа `,
   `Не согласен сам ты шляпа`,
   `Крутой фильм`,
@@ -48,19 +54,6 @@ const createComment = (array) => {
       </li>`);
   });
 };
-
-const smile = () => `<img src="./images/emoji/smile.png" width="30" height="30" alt="emoji">`;
-const sleeping = () => `<img src="./images/emoji/sleeping.png" width="30" height="30" alt="emoji">`;
-const puke = () => `<img src="./images/emoji/puke.png" width="30" height="30" alt="emoji">`;
-
-
-export const Emoji = {
-  SMILE: `smile`,
-  PUKE: `puke`,
-  SLEEPING: `sleeping`,
-  ANGRY: `angry`
-  };
-
 
 const createGenres = (array) => {
   return [...array].map((it) => {

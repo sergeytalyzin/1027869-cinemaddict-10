@@ -101,7 +101,7 @@ export default class MovieController {
       case Emoji.SMILE:
         addEmoji.innerHTML = ``;
         addEmoji.insertAdjacentHTML(`beforeend`, `<img src="./images/emoji/smile.png" width="55" height="55" alt="emoji">`);
-      break;
+        break;
       case Emoji.SLEEPING:
         addEmoji.innerHTML = ``;
         addEmoji.insertAdjacentHTML(`beforeend`, `<img src="./images/emoji/sleeping.png" width="55" height="55" alt="emoji">`);
