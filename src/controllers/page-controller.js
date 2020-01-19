@@ -96,6 +96,7 @@ export default class PageController {
   }
 
 
+
   renderShowMoreButton() {
     if (this._showingCardsCount >= this._cards.length) {
       return;

@@ -1,5 +1,5 @@
 import FilmCard from "../components/film-card";
-import FilmDetails from "../components/film-details";
+import FilmDetails, {Emoji} from "../components/film-details";
 import {render, replace} from "../utils/render";
 const siteBody = document.querySelector(`body`);
 
@@ -16,8 +16,10 @@ export default class MovieController {
     this._onDataChange = onDataChange;
     this._filmCardComponent = null;
     this._popupComponent = null;
+    this._onChooseEmoji = this._onChooseEmoji.bind(this);
 
   }
+
   render(card) {
     const oldCardComponent = this._filmCardComponent;
     this._filmCardComponent = new FilmCard(card);
@@ -26,7 +28,7 @@ export default class MovieController {
     const oldPopupComponent = this._popupComponent;
     this._popupComponent = new FilmDetails(card);
     const popup = this._popupComponent.getElement();
-
+    this._popupComponent.setEmoji(this._onChooseEmoji);
 
     const showPopup = () => {
       const onEscKeyDown = (evt) => {
@@ -78,16 +80,40 @@ export default class MovieController {
       render(this._container, filmCard);
     }
   }
+
   setDefaultView() {
     if (this._mode !== Mode.DEFAULT) {
       this._replaceCardToPopup();
 
     }
   }
+
   _replaceCardToPopup() {
     this._onViewChange();
 
     render(siteBody, this._popupComponent);
     this._mode = Mode.EDIT;
+  }
+
+  _onChooseEmoji(emoji) {
+    const addEmoji = this._popupComponent.getElement().querySelector(`.film-details__add-emoji-label`);
+    switch (emoji) {
+      case Emoji.SMILE:
+        addEmoji.innerHTML = ``;
+        addEmoji.insertAdjacentHTML(`beforeend`, `<img src="./images/emoji/smile.png" width="55" height="55" alt="emoji">`);
+      break;
+      case Emoji.SLEEPING:
+        addEmoji.innerHTML = ``;
+        addEmoji.insertAdjacentHTML(`beforeend`, `<img src="./images/emoji/sleeping.png" width="55" height="55" alt="emoji">`);
+        break;
+      case Emoji.PUKE:
+        addEmoji.innerHTML = ``;
+        addEmoji.insertAdjacentHTML(`beforeend`, `<img src="./images/emoji/puke.png" width="55" height="55" alt="emoji">`);
+        break;
+      case Emoji.ANGRY:
+        addEmoji.innerHTML = ``;
+        addEmoji.insertAdjacentHTML(`beforeend`, `<img src="./images/emoji/angry.png" width="55" height="55" alt="emoji">`);
+        break;
+    }
   }
 }

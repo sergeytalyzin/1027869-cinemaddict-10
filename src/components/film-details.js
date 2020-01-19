@@ -49,6 +49,19 @@ const createComment = (array) => {
   });
 };
 
+const smile = () => `<img src="./images/emoji/smile.png" width="30" height="30" alt="emoji">`;
+const sleeping = () => `<img src="./images/emoji/sleeping.png" width="30" height="30" alt="emoji">`;
+const puke = () => `<img src="./images/emoji/puke.png" width="30" height="30" alt="emoji">`;
+
+
+export const Emoji = {
+  SMILE: `smile`,
+  PUKE: `puke`,
+  SLEEPING: `sleeping`,
+  ANGRY: `angry`
+  };
+
+
 const createGenres = (array) => {
   return [...array].map((it) => {
     return (`<span class="film-details__genre">${it}</span>`);
@@ -162,25 +175,25 @@ export const getFilmDetailsTemplate = (filmCard, options = {}) => {
             <textarea class="film-details__comment-input" placeholder="Select reaction below and write comment here" name="comment"></textarea>
           </label>
 
-          <div class="film-details__emoji-list">
+          <div  class="film-details__emoji-list">
             <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-smile" value="sleeping">
-            <label class="film-details__emoji-label" for="emoji-smile">
-              <img src="./images/emoji/smile.png" width="30" height="30" alt="emoji">
+            <label class="film-details__emoji-label"  for="emoji-smile">
+              <img data-emoji = "${Emoji.SMILE}" src="./images/emoji/smile.png"  width="30" height="30" alt="emoji">
             </label>
 
             <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-sleeping" value="neutral-face">
             <label class="film-details__emoji-label" for="emoji-sleeping">
-              <img src="./images/emoji/sleeping.png" width="30" height="30" alt="emoji">
+              <img data-emoji = "${Emoji.SLEEPING}" src="./images/emoji/sleeping.png" width="30" height="30" alt="emoji">
             </label>
 
             <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-gpuke" value="grinning">
             <label class="film-details__emoji-label" for="emoji-gpuke">
-              <img src="./images/emoji/puke.png" width="30" height="30" alt="emoji">
+              <img data-emoji = "${Emoji.PUKE}" src="./images/emoji/puke.png" width="30" height="30" alt="emoji">
             </label>
 
             <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-angry" value="grinning">
             <label class="film-details__emoji-label" for="emoji-angry">
-              <img src="./images/emoji/angry.png" width="30" height="30" alt="emoji">
+              <img data-emoji = "${Emoji.ANGRY}" src="./images/emoji/angry.png" width="30" height="30" alt="emoji">
             </label>
           </div>
         </div>
@@ -214,6 +227,13 @@ export default class FilmDetails extends AbstractSmartComponent {
     }
   }
 
+  setEmoji(handler) {
+    this._element.addEventListener(`click`, (evt) => {
+      evt.preventDefault();
+      const emoJi = evt.target.dataset.emoji;
+      handler(emoJi);
+    });
+  }
 
   setAddToWatchlistListener(handler) {
     this.getElement().querySelector(`.film-details__control-label--watchlist`).addEventListener(`click`, handler);
