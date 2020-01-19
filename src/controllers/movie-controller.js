@@ -4,10 +4,15 @@ import {render, replace} from "../utils/render";
 const siteBody = document.querySelector(`body`);
 
 const ESCAPE_KEY = 27;
-export default class MovieController {
-  constructor(container, onDataChange) {
-    this._container = container;
 
+const Mode = {
+  DEFAULT: `default`,
+  EDIT: `edit`,
+};
+export default class MovieController {
+  constructor(container, onDataChange, onViewChange) {
+    this._container = container;
+    this._onViewChange = onViewChange;
     this._onDataChange = onDataChange;
     this._filmCardComponent = null;
     this._popupComponent = null;
@@ -29,9 +34,12 @@ export default class MovieController {
           closePopup();
         }
       };
-      render(siteBody, popup);
+      if (popup) {
+        render(siteBody, popup);
+      }
+
       const closePopup = () => {
-        siteBody.removeChild(popup);
+        popup.remove();
         button.removeEventListener(`click`, closePopup);
         document.removeEventListener(`keydown`, onEscKeyDown);
       };
@@ -65,8 +73,21 @@ export default class MovieController {
     if (oldCardComponent && oldPopupComponent) {
       replace(this._filmCardComponent, oldCardComponent);
       replace(this._popupComponent, oldPopupComponent);
+      showPopup();
     } else {
       render(this._container, filmCard);
     }
+  }
+  setDefaultView() {
+    if (this._mode !== Mode.DEFAULT) {
+      this._replaceCardToPopup();
+
+    }
+  }
+  _replaceCardToPopup() {
+    this._onViewChange();
+
+    render(siteBody, this._popupComponent);
+    this._mode = Mode.EDIT;
   }
 }
