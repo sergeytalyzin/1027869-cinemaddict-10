@@ -223,8 +223,8 @@ export default class FilmDetails extends AbstractSmartComponent {
   setEmoji(handler) {
     this._element.addEventListener(`click`, (evt) => {
       evt.preventDefault();
-      const emoJi = evt.target.dataset.emoji;
-      handler(emoJi);
+      const emoji = evt.target.dataset.emoji;
+      handler(emoji);
     });
   }
 

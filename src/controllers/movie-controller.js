@@ -16,8 +16,9 @@ export default class MovieController {
     this._onDataChange = onDataChange;
     this._filmCardComponent = null;
     this._popupComponent = null;
+    this._mode = Mode.DEFAULT;
     this._onChooseEmoji = this._onChooseEmoji.bind(this);
-
+    this._replaceCardToPopup = this._replaceCardToPopup.bind(this);
   }
 
   render(card) {
@@ -30,16 +31,12 @@ export default class MovieController {
     const popup = this._popupComponent.getElement();
     this._popupComponent.setEmoji(this._onChooseEmoji);
 
-    const showPopup = () => {
+    const listeners = () => {
       const onEscKeyDown = (evt) => {
         if (evt.keyCode === ESCAPE_KEY) {
           closePopup();
         }
       };
-      if (popup) {
-        render(siteBody, popup);
-      }
-
       const closePopup = () => {
         popup.remove();
         button.removeEventListener(`click`, closePopup);
@@ -71,11 +68,11 @@ export default class MovieController {
     });
 
 
-    this._filmCardComponent.setShowPopupHandler(showPopup);
+    this._filmCardComponent.setShowPopupHandler(this._replaceCardToPopup);
     if (oldCardComponent && oldPopupComponent) {
       replace(this._filmCardComponent, oldCardComponent);
       replace(this._popupComponent, oldPopupComponent);
-      showPopup();
+      listeners();
     } else {
       render(this._container, filmCard);
     }
@@ -83,15 +80,14 @@ export default class MovieController {
 
   setDefaultView() {
     if (this._mode !== Mode.DEFAULT) {
-      this._replaceCardToPopup();
-
+      this._popupComponent.getElement().remove();
     }
   }
 
   _replaceCardToPopup() {
     this._onViewChange();
 
-    render(siteBody, this._popupComponent);
+    render(siteBody, this._popupComponent.getElement());
     this._mode = Mode.EDIT;
   }
 
