@@ -1,6 +1,6 @@
 import AbstractComponent from "./abstract-component";
 
-const getFilmDetailsWithRatingTemplate = () => `<div class="form-details__middle-container">
+const getRatingTemplate = () => `<div class="form-details__middle-container">
       <section class="film-details__user-rating-wrap">
         <div class="film-details__user-rating-controls">
           <button class="film-details__watched-reset" type="button">Undo</button>
@@ -52,6 +52,6 @@ const getFilmDetailsWithRatingTemplate = () => `<div class="form-details__middle
 
 export default class FilmDetailsWithRating extends AbstractComponent {
   getTemplate() {
-    return getFilmDetailsWithRatingTemplate();
+    return getRatingTemplate();
   }
 }

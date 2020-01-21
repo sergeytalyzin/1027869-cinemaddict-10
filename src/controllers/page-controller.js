@@ -105,7 +105,7 @@ export default class PageController {
     this._showMoreComponent.setShowMoreButtonClickHandler(() => {
       const prevCardsShowing = this._showingCardsCount;
       this._showingCardsCount = this._showingCardsCount + CARD_BUTTON;
-      const newCards =  renderCards(this._container, this._cards.slice(prevCardsShowing, this._showingCardsCount), this._onDataChange, this._onViewChange);
+      const newCards = renderCards(this._container, this._cards.slice(prevCardsShowing, this._showingCardsCount), this._onDataChange, this._onViewChange);
       this._showedCardControllers = this._showedCardControllers.concat(newCards);
       if (this._showingCardsCount >= this._cards.length) {
         remove(this._showMoreComponent);

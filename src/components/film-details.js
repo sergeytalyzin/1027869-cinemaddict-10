@@ -71,9 +71,9 @@ const generateFilmGenre = () => {
 const newGenre = generateFilmGenre();
 
 
-export const getFilmDetailsTemplate = (filmCard, options = {}) => {
+export const getFilmDetailsTemplate = (filmCard, option = {}) => {
+  const {watchedInput, watchlistInput, favoriteInput} = option;
   const {description, title, rating, duration, poster, comment, age, favorite, director, writers, actors, releaseDate} = filmCard;
-  const {isFilmDetailsWithRating} = options;
   const genre = createGenres(newGenre);
   const commentFilm = createComment(arrayComments);
 
@@ -142,17 +142,17 @@ export const getFilmDetailsTemplate = (filmCard, options = {}) => {
       </div>
 
       <section class="film-details__controls">
-        <input type="checkbox" class="film-details__control-input visually-hidden" id="watchlist" name="watchlist">
+        <input type="checkbox" class="film-details__control-input visually-hidden" ${watchlistInput ? `checked` : ``}  id="watchlist" name="watchlist">
         <label for="watchlist" class="film-details__control-label film-details__control-label--watchlist">Add to watchlist</label>
 
-        <input type="checkbox" class="film-details__control-input visually-hidden" id="watched" name="watched">
+        <input type="checkbox" class="film-details__control-input visually-hidden" ${watchedInput ? `checked` : ``} id="watched" name="watched">
         <label for="watched" class="film-details__control-label film-details__control-label--watched">Already watched</label>
 
-        <input type="checkbox" class="film-details__control-input visually-hidden" id="favorite" name="favorite">
+        <input type="checkbox" class="film-details__control-input visually-hidden" ${favoriteInput ? `checked` : ``}  id="favorite" name="favorite">
         <label for="favorite" class="film-details__control-label film-details__control-label--favorite">Add ${favorite ? `X` : ``}to favorites</label>
       </section>
     </div>
-    ${isFilmDetailsWithRating ? isFilmDetailsWithRating : ``}
+ 
     <div class="form-details__bottom-container">
       <section class="film-details__comments-wrap">
         <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${comment}</span></h3>
@@ -200,12 +200,16 @@ export default class FilmDetails extends AbstractSmartComponent {
   constructor(filmCard) {
     super();
     this._filmCard = filmCard;
-    this._isFilmDetailsWithRating = null;
-    this.recoveryListeners();
+    this.insertRating();
+    this._watchedInput = null;
+    this._watchlistInput = null;
+    this._favoriteInput = null;
   }
   getTemplate() {
     return getFilmDetailsTemplate(this._filmCard, {
-      isFilmDetailsWithRating: this._isFilmDetailsWithRating,
+      watchedInput: this._watchedInput,
+      watchlistInput: this._watchlistInput,
+      favoriteInput: this._favoriteInput
     });
   }
 
@@ -213,10 +217,12 @@ export default class FilmDetails extends AbstractSmartComponent {
     super.rerender();
   }
 
-  recoveryListeners() {
-    if (this._filmCard.watched && !this._isFilmDetailsWithRating) {
-      this._isFilmDetailsWithRating = new FilmDetailsWithRating().getTemplate();
-      this.rerender();
+
+  insertRating() {
+    if (this._filmCard.watched) {
+      const topContainer = this.getElement().querySelector(`.form-details__top-container`);
+      const rating = new FilmDetailsWithRating().getElement();
+      topContainer.insertAdjacentElement(`afterend`, rating);
     }
   }
 
@@ -229,14 +235,27 @@ export default class FilmDetails extends AbstractSmartComponent {
   }
 
   setAddToWatchlistListener(handler) {
-    this.getElement().querySelector(`.film-details__control-label--watchlist`).addEventListener(`click`, handler);
+    this.getElement().querySelector(`.film-details__control-label--watchlist`).addEventListener(`click`, ()=>{
+      this._watchlistInput = !this._watchlistInput;
+      console.log(this._watchlistInput);
+      handler();
+    });
   }
 
   setWatchedListener(handler) {
-    this.getElement().querySelector(`.film-details__control-label--watched`).addEventListener(`click`, handler);
+    this.getElement().querySelector(`.film-details__control-label--watched`).addEventListener(`click`, ()=>{
+      this._watchedInput = !this._watchedInput;
+      console.log(this._watchedInput);
+      handler();
+    });
+
   }
 
   setAddToFavoritesListener(handler) {
-    this.getElement().querySelector(`.film-details__control-label--favorite`).addEventListener(`click`, handler);
+    this.getElement().querySelector(`.film-details__control-label--favorite`).addEventListener(`click`, ()=>{
+      this._favoriteInput = !this._favoriteInput;
+      console.log(this._favoriteInput);
+      handler();
+    });
   }
 }
