@@ -76,10 +76,10 @@ export default class PageController {
     let sortedCards = [];
     switch (sortType) {
       case SortType.DATE:
-        sortedCards = this._cards.slice().sort((a, b) => b.year - a.year);
+        sortedCards = this._cards.slice(0, this._showingCardsCount).sort((a, b) => b.year - a.year);
         break;
       case SortType.RATING :
-        sortedCards = this._cards.slice().sort((a, b) => b.rating - a.rating);
+        sortedCards = this._cards.slice(0, this._showingCardsCount).sort((a, b) => b.rating - a.rating);
         break;
       case SortType.DEFAULT:
         sortedCards = this._cards.slice(0, this._showingCardsCount);
@@ -87,12 +87,7 @@ export default class PageController {
     }
     this._container.innerHTML = ``;
     const newCards = renderCards(this._container, sortedCards, this._onDataChange, this._onViewChange);
-    this._showedCardControllers = this._showedCardControllers.concat(newCards);
-    if (sortType === SortType.DEFAULT) {
-      this.renderShowMoreButton();
-    } else {
-      remove(this._showMoreComponent);
-    }
+    this._showedCardControllers = this._showedCardControllers.concat(newCards);dd 
   }
 
 
