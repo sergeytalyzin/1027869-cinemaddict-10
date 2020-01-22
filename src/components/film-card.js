@@ -1,8 +1,10 @@
 import AbstractComponent from "./abstract-component";
 
+
 export const getFilmCardsTemplate = (card) => {
 
-  const {description, title, rating, year, genre, duration, poster, comment, favorite} = card;
+  const {description, title, rating, year, genre, duration, poster, comment, watchlist,favorite,watched} = card;
+
   return (`<article class="film-card">
           <h3 class="film-card__title">${title}</h3>
           <p class="film-card__rating">${rating}</p>
@@ -36,6 +38,7 @@ export default class Card extends AbstractComponent {
     this._element.querySelector(`.film-card__comments`).addEventListener(`click`, handler);
     this._element.querySelector(`.film-card__poster`).addEventListener(`click`, handler);
   }
+
   setAddToWatchlistListener(handler) {
     this.getElement().querySelector(`.film-card__controls-item--add-to-watchlist`).addEventListener(`click`, handler);
   }

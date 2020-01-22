@@ -87,7 +87,7 @@ export default class PageController {
     }
     this._container.innerHTML = ``;
     const newCards = renderCards(this._container, sortedCards, this._onDataChange, this._onViewChange);
-    this._showedCardControllers = this._showedCardControllers.concat(newCards);dd 
+    this._showedCardControllers = this._showedCardControllers.concat(newCards);
   }
 
 
@@ -113,9 +113,14 @@ export default class PageController {
     if (index === -1) {
       return;
     }
-    this._cards = [].concat(this._cards.slice(0, index), newData, this._cards.slice(index + 1));
+    const firstToNewCards = this._cards.slice(0, index);
+
+    const newToLastCards = this._cards.slice(index + 1);
+
+    this._cards = [].concat(firstToNewCards, newData, newToLastCards);
     movieController.render(this._cards[index]);
   }
+
   _onViewChange() {
     this._showedCardControllers.forEach((it) => it.setDefaultView());
   }

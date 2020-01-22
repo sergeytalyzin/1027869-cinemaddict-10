@@ -219,25 +219,57 @@ export default class FilmDetails extends AbstractSmartComponent {
 
 
   insertRating() {
-    if (this._filmCard.watched) {
+    if (this._filmCard.watched === true) {
       const topContainer = this.getElement().querySelector(`.form-details__top-container`);
       const rating = new FilmDetailsWithRating().getElement();
       topContainer.insertAdjacentElement(`afterend`, rating);
+      const popupInputWatched = this.getElement().querySelector(`#watched`);
+      popupInputWatched.setAttribute(`checked`,`checked`);
+    }
+    if (this._filmCard.watchlist === true) {
+      const popupInputWatchlist = this.getElement().querySelector(`#watchlist`);
+      popupInputWatchlist.setAttribute(`checked`,`checked`);
+    }
+    if (this._filmCard.favorite === true) {
+      const popupInputFavorite  = this.getElement().querySelector(`#favorite`);
+      popupInputFavorite .setAttribute(`checked`,`checked`);
     }
   }
 
-  setEmoji(handler) {
+  _onChooseEmoji(emoji) {
+    const addEmoji = this.getElement().querySelector(`.film-details__add-emoji-label`);
+    switch (emoji) {
+      case Emoji.SMILE:
+        addEmoji.innerHTML = ``;
+        addEmoji.insertAdjacentHTML(`beforeend`, `<img src="./images/emoji/smile.png" width="55" height="55" alt="emoji">`);
+        break;
+      case Emoji.SLEEPING:
+        addEmoji.innerHTML = ``;
+        addEmoji.insertAdjacentHTML(`beforeend`, `<img src="./images/emoji/sleeping.png" width="55" height="55" alt="emoji">`);
+        break;
+      case Emoji.PUKE:
+        addEmoji.innerHTML = ``;
+        addEmoji.insertAdjacentHTML(`beforeend`, `<img src="./images/emoji/puke.png" width="55" height="55" alt="emoji">`);
+        break;
+      case Emoji.ANGRY:
+        addEmoji.innerHTML = ``;
+        addEmoji.insertAdjacentHTML(`beforeend`, `<img src="./images/emoji/angry.png" width="55" height="55" alt="emoji">`);
+        break;
+    }
+  }
+
+  getEmoji() {
     this._element.addEventListener(`click`, (evt) => {
       evt.preventDefault();
       const emoji = evt.target.dataset.emoji;
-      handler(emoji);
+      this._onChooseEmoji(emoji);
+
     });
   }
 
   setAddToWatchlistListener(handler) {
     this.getElement().querySelector(`.film-details__control-label--watchlist`).addEventListener(`click`, ()=>{
       this._watchlistInput = !this._watchlistInput;
-      console.log(this._watchlistInput);
       handler();
     });
   }
@@ -245,7 +277,6 @@ export default class FilmDetails extends AbstractSmartComponent {
   setWatchedListener(handler) {
     this.getElement().querySelector(`.film-details__control-label--watched`).addEventListener(`click`, ()=>{
       this._watchedInput = !this._watchedInput;
-      console.log(this._watchedInput);
       handler();
     });
 
@@ -254,7 +285,6 @@ export default class FilmDetails extends AbstractSmartComponent {
   setAddToFavoritesListener(handler) {
     this.getElement().querySelector(`.film-details__control-label--favorite`).addEventListener(`click`, ()=>{
       this._favoriteInput = !this._favoriteInput;
-      console.log(this._favoriteInput);
       handler();
     });
   }
