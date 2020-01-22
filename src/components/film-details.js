@@ -200,7 +200,7 @@ export default class FilmDetails extends AbstractSmartComponent {
   constructor(filmCard) {
     super();
     this._filmCard = filmCard;
-    this.insertRating();
+    this.checkedRatingWatchlistWatched();
     this._watchedInput = null;
     this._watchlistInput = null;
     this._favoriteInput = null;
@@ -217,8 +217,7 @@ export default class FilmDetails extends AbstractSmartComponent {
     super.rerender();
   }
 
-
-  insertRating() {
+  checkedRatingWatchlistWatched() {
     if (this._filmCard.watched === true) {
       const topContainer = this.getElement().querySelector(`.form-details__top-container`);
       const rating = new FilmDetailsWithRating().getElement();
@@ -232,7 +231,7 @@ export default class FilmDetails extends AbstractSmartComponent {
     }
     if (this._filmCard.favorite === true) {
       const popupInputFavorite  = this.getElement().querySelector(`#favorite`);
-      popupInputFavorite .setAttribute(`checked`,`checked`);
+      popupInputFavorite.setAttribute(`checked`,`checked`);
     }
   }
 
