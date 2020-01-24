@@ -93,8 +93,8 @@ export default class MovieController {
   _replaceCardToPopup() {
     this._onViewChange();
     this._popupComponent.setListenersEscOnButton();
-    // this.setListenersEscOnButton();
     render(siteBody, this._popupComponent.getElement());
+    // this.setListenersEscOnButton();
     this._mode = Mode.EDIT;
   }
 }
