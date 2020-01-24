@@ -1,5 +1,4 @@
 import AbstractComponent from "./abstract-component";
-import FilmDetailsWithRating from "./film-details-with-rating";
 
 
 export const getFilmCardsTemplate = (card) => {
@@ -50,7 +49,7 @@ export default class Card extends AbstractComponent {
       inputWatchlist.classList.add(`film-card__controls-item--active`);
     }
     if (this._card.favorite === true) {
-      const inputFavorite  = this.getElement().querySelector(`.film-card__controls-item--favorite`);
+      const inputFavorite = this.getElement().querySelector(`.film-card__controls-item--favorite`);
       inputFavorite.classList.add(`film-card__controls-item--active`);
     }
   }

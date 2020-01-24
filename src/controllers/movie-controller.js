@@ -53,7 +53,7 @@ export default class MovieController {
         this._onDataChange(this, card, Object.assign({}, card, {watched: !card.watched}));
       });
     };
-  setListenersPopupOnCard();
+    setListenersPopupOnCard();
 
 
     this._filmCardComponent.setShowPopupHandler(this._replaceCardToPopup);
