@@ -3,7 +3,7 @@ import FilmDetails from "../components/film-details";
 import {render, replace} from "../utils/render";
 const siteBody = document.querySelector(`body`);
 
-// const ESCAPE_KEY = 27;
+
 
 const Mode = {
   DEFAULT: `default`,
@@ -34,15 +34,6 @@ export default class MovieController {
     getEmojiPopup();
 
     const setListenersPopupOnCard = () => {
-      // this._popupComponent.setAddToFavoritesListener(() => {
-      //   this._onDataChange(this, card, Object.assign({}, card, {favorite: !card.favorite}));
-      // });
-      // this._popupComponent.setAddToWatchlistListener(() => {
-      //   this._onDataChange(this, card, Object.assign({}, card, {watchlist: !card.watchlist}));
-      // });
-      // this._popupComponent.setWatchedListener(() => {
-      //   this._onDataChange(this, card, Object.assign({}, card, {watched: !card.watched}));
-      // });
       this._filmCardComponent.setAddToFavoritesListener(() => {
         this._onDataChange(this, card, Object.assign({}, card, {favorite: !card.favorite}));
       });
@@ -60,29 +51,11 @@ export default class MovieController {
     if (oldCardComponent && oldPopupComponent) {
       replace(this._filmCardComponent, oldCardComponent);
       replace(this._popupComponent, oldPopupComponent);
-      // this.setListenersEscOnButton();
       this._popupComponent.setListenersEscOnButton();
     } else {
       render(this._container, filmCard);
     }
   }
-
-  // setListenersEscOnButton() {
-  //   const onEscKeyDown = (evt) => {
-  //     if (evt.keyCode === ESCAPE_KEY) {
-  //       closePopup();
-  //     }
-  //   };
-  //   const closePopup = () => {
-  //     this._popupComponent.getElement().remove();
-  //     button.removeEventListener(`click`, closePopup);
-  //     document.removeEventListener(`keydown`, onEscKeyDown);
-  //   };
-  //   const button = this._popupComponent.getElement().querySelector(`.film-details__close-btn`);
-  //   button.addEventListener(`click`, closePopup);
-  //   document.addEventListener(`keydown`, onEscKeyDown);
-  // };
-
 
   setDefaultView() {
     if (this._mode !== Mode.DEFAULT) {
@@ -94,7 +67,6 @@ export default class MovieController {
     this._onViewChange();
     this._popupComponent.setListenersEscOnButton();
     render(siteBody, this._popupComponent.getElement());
-    // this.setListenersEscOnButton();
     this._mode = Mode.EDIT;
   }
 }
