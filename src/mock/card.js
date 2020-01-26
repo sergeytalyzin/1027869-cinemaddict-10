@@ -64,6 +64,30 @@ const getRandomDescription = () => {
   }
   return Desc;
 };
+const MONTH_NAMES = [
+  `January`,
+  `February`,
+  `March`,
+  `April`,
+  `May`,
+  `June`,
+  `July`,
+  `August`,
+  `September`,
+  `October`,
+  `November`,
+  `December`,
+];
+const DetailsNames = [`Frank Sinatra`, `John Mason`, `Anthony Mann`, `Bred Pitt`, `Heinz Herald`, `Richard Weil`, `Anne Wigton`,
+  `Erich von Stroheim`, `Mary Beth Hughes`, `Dan Duryea`];
+
+const generateListNames = (names) => {
+  return names.filter(()=> Math.random() > 0.5);
+};
+
+const generateDate = () => {
+  return `${getRandomNumber(1, 30)}  ${getRandomArray(MONTH_NAMES)}  ${getRandomNumber(1940, 2019)}`;
+};
 
 const generateCard = () => {
   return {
@@ -75,7 +99,14 @@ const generateCard = () => {
     poster: getRandomArray(Posters),
     description: getRandomDescription(),
     comment: getRandomNumber(1, 10),
-    age: getRandomArray(AGES)
+    age: getRandomArray(AGES),
+    director: getRandomArray(DetailsNames),
+    writers: new Set(generateListNames(DetailsNames)),
+    actors: new Set(generateListNames(DetailsNames)),
+    releaseDate: generateDate(),
+    watchlist: Math.random() > 0.5,
+    watched: false,
+    favorite: Math.random() > 0.5
   };
 };
 
@@ -85,4 +116,5 @@ const generateCardsFilms = (count) => {
     .map(generateCard);
 };
 
-export {generateCard, generateCardsFilms, getRandomNumber, getRandomArray, Genre};
+
+export {generateCard, generateCardsFilms, getRandomNumber, getRandomArray, Genre, DetailsNames};

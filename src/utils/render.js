@@ -14,6 +14,16 @@ export const remove = (component) => {
   component.getElement().remove();
   component.removeElement();
 };
+export const replace = (newComponent, oldComponent) => {
+
+  const oldElement = oldComponent.getElement();
+  const parentElement = oldElement.parentElement;
+  const newElement = newComponent.getElement();
+
+  if (parentElement) {
+    parentElement.replaceChild(newElement, oldElement);
+  }
+};
 
 export const render = (container, element, place = RenderPosition.BEFOREEND) => {
   switch (place) {
