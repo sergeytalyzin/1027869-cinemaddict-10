@@ -1,4 +1,4 @@
-import {formatTime, getRandomDate} from "../utils/time";
+import {formatTime} from "../utils/time";
 
 const Films = [
   `Rembo`,

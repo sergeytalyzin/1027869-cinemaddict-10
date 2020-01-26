@@ -4,7 +4,6 @@ import {render, replace} from "../utils/render";
 const siteBody = document.querySelector(`body`);
 
 
-
 const Mode = {
   DEFAULT: `default`,
   EDIT: `edit`,
