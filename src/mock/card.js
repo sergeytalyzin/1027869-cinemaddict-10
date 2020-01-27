@@ -50,19 +50,12 @@ const getRandomArray = (array) => {
 };
 
 const getRandomDuration = () => {
-  // let minutes = getRandomNumber(30, 150);
-  // if (minutes < 60) {
-  //   return minutes ;
-  // }
   let hours = Math.floor(getRandomNumber(0, 3));
   let minutes = getRandomNumber(0, 60);
   return {
     h: hours,
     m: minutes
   };
-
-
-  // Math.floor(minutes / 60) + `h ` + (minutes % 60) + `min`;
 };
 
 const getRandomDescription = () => {
