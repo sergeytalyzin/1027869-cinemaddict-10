@@ -1,6 +1,6 @@
 import {Genre, getRandomArray, getRandomNumber} from "../mock/card";
 import {DetailsNames} from "../mock/card";
-import {getRandomDate} from "../utils/time";
+import {formatDate, getRandomDate} from "../utils/time";
 import AbstractSmartComponent from "./abstract-smart-component";
 import FilmDetailsWithRating from "./film-details-with-rating";
 const NUMBER_OF_ADDITIVES = 5;
@@ -21,11 +21,12 @@ const COMMENTS = [`Шляпа `,
 
 
 const generateComment = () => {
+  const dueDate = getRandomDate();
   return {
     emoji: getRandomArray(EMOJI),
     comment: getRandomArray(COMMENTS),
     author: getRandomArray(DetailsNames),
-    date: getRandomDate(),
+    date: formatDate(dueDate),
   };
 };
 

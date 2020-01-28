@@ -1,3 +1,5 @@
+import {formatTime} from "../utils/time";
+
 const Films = [
   `Rembo`,
   `Batman`,
@@ -48,11 +50,12 @@ const getRandomArray = (array) => {
 };
 
 const getRandomDuration = () => {
-  let minutes = getRandomNumber(30, 150);
-  if (minutes < 60) {
-    return minutes + `min`;
-  }
-  return Math.floor(minutes / 60) + `h ` + (minutes % 60) + `min`;
+  let hours = Math.floor(getRandomNumber(0, 3));
+  let minutes = getRandomNumber(0, 60);
+  return {
+    h: hours,
+    m: minutes
+  };
 };
 
 const getRandomDescription = () => {
@@ -94,7 +97,7 @@ const generateCard = () => {
     title: getRandomArray(Films),
     rating: getRandomRating(0, 10),
     year: getRandomNumber(1950, 2020),
-    duration: getRandomDuration(),
+    duration: formatTime(getRandomDuration()),
     genre: getRandomArray(Genre),
     poster: getRandomArray(Posters),
     description: getRandomDescription(),
