@@ -26,7 +26,8 @@ const renderCards = (container, cards, onDataChange, onViewChange) => {
 
 
 export default class PageController {
-  constructor() {
+  constructor(moviesModel) {
+    this._moviesModel = moviesModel;
     this._showedCardControllers = [];
     this._showMoreComponent = new ShowMoreButton();
     this._filmContainerComponent = new FilmContainer();
@@ -40,8 +41,8 @@ export default class PageController {
     this._onSortTypeChange = this._onSortTypeChange.bind(this);
   }
 
-  render(cards) {
-    this._cards = cards;
+  render() {
+    this._cards = this._moviesModel.getCards();
     const filmContainerElement = this._filmContainerComponent.getElement();
     this._container = filmContainerElement.querySelector(`.films-list__container`);
 
