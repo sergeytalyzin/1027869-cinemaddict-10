@@ -94,6 +94,7 @@ const generateDate = () => {
 
 const generateCard = () => {
   return {
+    id: String(Math.random()),
     title: getRandomArray(Films),
     rating: getRandomRating(0, 10),
     year: getRandomNumber(1950, 2020),

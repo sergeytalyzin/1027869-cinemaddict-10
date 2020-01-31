@@ -26,7 +26,7 @@ const renderCards = (container, cards, onDataChange, onViewChange) => {
 
 
 export default class PageController {
-  constructor() {
+  constructor(z) {
     this._showedCardControllers = [];
     this._showMoreComponent = new ShowMoreButton();
     this._filmContainerComponent = new FilmContainer();
@@ -97,6 +97,7 @@ export default class PageController {
     }
     const filmList = siteBody.querySelector(`.films-list`);
     render(filmList, this._showMoreComponent.getElement());
+
     this._showMoreComponent.setShowMoreButtonClickHandler(() => {
       const prevCardsShowing = this._showingCardsCount;
       this._showingCardsCount = this._showingCardsCount + CARD_BUTTON;
@@ -125,3 +126,5 @@ export default class PageController {
     this._showedCardControllers.forEach((it) => it.setDefaultView());
   }
 }
+
+
