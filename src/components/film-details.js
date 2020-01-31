@@ -150,7 +150,7 @@ export const getFilmDetailsTemplate = (filmCard) => {
         <label for="watched" class="film-details__control-label film-details__control-label--watched">Already watched</label>
 
         <input type="checkbox" class="film-details__control-input visually-hidden" ${favorite ? `checked` : ``}  id="favorite" name="favorite">
-        <label for="favorite" class="film-details__control-label film-details__control-label--favorite">Add ${favorite ? `X` : ``}to favorites</label>
+        <label for="favorite" class="film-details__control-label film-details__control-label--favorite">Add to favorites</label>
       </section>
     </div>
     ${watched ? filmRating : `` }

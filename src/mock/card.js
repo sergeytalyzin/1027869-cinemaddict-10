@@ -94,6 +94,7 @@ const generateDate = () => {
 
 const generateCard = () => {
   return {
+    id: Math.random(),
     title: getRandomArray(Films),
     rating: getRandomRating(0, 10),
     year: getRandomNumber(1950, 2020),
@@ -108,7 +109,7 @@ const generateCard = () => {
     actors: new Set(generateListNames(DetailsNames)),
     releaseDate: generateDate(),
     watchlist: Math.random() > 0.5,
-    watched: false,
+    watched: Math.random() > 0.5,
     favorite: Math.random() > 0.5
   };
 };

@@ -110,16 +110,10 @@ export default class PageController {
   }
 
   _onDataChange(movieController, oldData, newData) {
-    const index = this._cards.findIndex((it) => it === oldData);
-    if (index === -1) {
-      return;
+    const isSuccess = this._moviesModel.updateMovies(oldData.id, newData);
+    if (isSuccess) {
+      movieController.render(newData);
     }
-    const firstToNewCards = this._cards.slice(0, index);
-
-    const newToLastCards = this._cards.slice(index + 1);
-
-    this._cards = [].concat(firstToNewCards, newData, newToLastCards);
-    movieController.render(this._cards[index]);
   }
 
   _onViewChange() {
