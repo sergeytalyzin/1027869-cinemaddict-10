@@ -1,5 +1,5 @@
 import Navigation from "../components/navigation";
-import {render, RenderPosition} from "../utils/render";
+import {render, RenderPosition, replace} from "../utils/render";
 import {generateFilterStatistic} from "../mock/statistic-filters";
 import Statistic from "../components/statistic";
 import {FilterType} from "../const";
@@ -16,7 +16,7 @@ export default class FilterController {
     this.moviesModel = moviesModel;
 
     this.renderStatistic = this.renderStatistic.bind(this);
-    this.removeStats = this.removeStats.bind(this);
+    this.onNavigationClick = this.onNavigationClick.bind(this);
   }
 
   render() {
@@ -30,12 +30,16 @@ export default class FilterController {
         active: filterType === this._activeFilterType
       };
     });
+    const oldNavigation = this._navigation;
     this._navigation = new Navigation(filters);
-
-    render(container, this._navigation.getElement());
     this._navigation.setClickStatsHandler(this.renderStatistic);
-    this._navigation.setClickMainNavigationHandler(this.removeStats);
+    this._navigation.setClickMainNavigationHandler(this.onNavigationClick);
 
+    if (oldNavigation) {
+      replace(this._navigation, oldNavigation);
+    } else {
+      render(container, this._navigation.getElement());
+    }
   }
 
   renderStatistic() {
@@ -45,11 +49,21 @@ export default class FilterController {
     }
   }
 
+  onNavigationClick(evt) {
+    this._onFilterChange(evt.target.dataset.nav);
+    this.removeStats();
+  }
   removeStats() {
     if (!this._statistic) {
       return;
     }
     this._statistic.getElement().remove();
     this._statistic = null;
+  }
+
+  _onFilterChange(filterType) {
+    this.moviesModel.setNavFilters(filterType);
+    this._activeFilterType = filterType;
+    this.render();
   }
 }

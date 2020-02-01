@@ -4,7 +4,7 @@ const getNavMarkup = (filter) => {
   const {name, count, active} = filter;
 
   return (
-    `<a href="#${name === `All movies` ? name.toLowerCase().slice(0, 3) : name.toLowerCase()}"  class="main-navigation__item ${active ? `main-navigation__item--active` : `` } ${name === `Stats` ? `main-navigation__item--additional` : `` }">
+    `<a data-nav="${name}" href="#${name === `All movies` ? name.toLowerCase().slice(0, 3) : name.toLowerCase()}"  class="main-navigation__item ${active ? `main-navigation__item--active` : `` } ${name === `Stats` ? `main-navigation__item--additional` : `` }">
 ${name}${(name === `All movies` || name === `Stats`) ? `` : `<span class="main-navigation__item-count">${count}</span>` }</a>`
   );
 };
@@ -39,7 +39,7 @@ export default class Navigation extends AbstractComponent {
       if (evt.target === this.statsElement) {
         return;
       }
-      handler();
+      handler(evt);
     });
   }
 }
