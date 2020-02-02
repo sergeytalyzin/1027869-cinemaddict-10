@@ -82,12 +82,7 @@ export default class PageController {
 
   _removeMovies() {
     this._container.innerHTML = ``;
-      // this._showedCardControllers.forEach((taskController) => taskController.destroy());
-      this._showedCardControllers = [];
-
-    // this._prevCardsShowing = this._showingCardsCount;
-    // this._showingCardsCount = CARDS_INDICATOR;
-    // this.renderShowMoreButton();
+    this._showedCardControllers = [];
   }
 
   _updateTasks(count) {

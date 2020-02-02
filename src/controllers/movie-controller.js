@@ -17,6 +17,7 @@ export default class MovieController {
     this._popupComponent = null;
     this._mode = Mode.DEFAULT;
     this._replaceCardToPopup = this._replaceCardToPopup.bind(this);
+
   }
 
   render(card) {
@@ -42,6 +43,25 @@ export default class MovieController {
       this._filmCardComponent.setWatchedListener(() => {
         this._onDataChange(this, card, Object.assign({}, card, {watched: !card.watched}));
       });
+
+      this._popupComponent.setAddToWatchlistListener(() => {
+        this._onDataChange(this, card, Object.assign({}, card));
+      });
+      this._popupComponent.setWatchedListener(() => {
+        this._onDataChange(this, card, Object.assign({}, card));
+      });
+      this._popupComponent.setDeleteCommentHandler(() => {
+        this._onDataChange(this, card, Object.assign({}, card));
+      });
+      this._popupComponent.setAddToFavoritesListener(() => {
+        this._onDataChange(this, card, Object.assign({}, card));
+      });
+
+      this._popupComponent.setFormSubmit(() => {
+        this._onDataChange(this, card, Object.assign({}, card));
+      });
+
+
     };
     setListenersPopupOnCard();
 

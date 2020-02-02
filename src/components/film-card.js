@@ -3,7 +3,7 @@ import AbstractComponent from "./abstract-component";
 
 export const getFilmCardsTemplate = (card) => {
 
-  const {description, title, rating, year, genre, duration, poster, comment, favorite} = card;
+  const {description, title, rating, year, genre, duration, poster, comment} = card;
 
   return (`<article class="film-card">
           <h3 class="film-card__title">${title}</h3>

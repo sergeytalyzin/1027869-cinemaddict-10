@@ -1,4 +1,5 @@
-import {formatTime} from "../utils/time";
+import {formatDate, formatTime, getRandomDate} from "../utils/time";
+
 
 const Films = [
   `Rembo`,
@@ -92,7 +93,36 @@ const generateDate = () => {
   return `${getRandomNumber(1, 30)}  ${getRandomArray(MONTH_NAMES)}  ${getRandomNumber(1940, 2019)}`;
 };
 
+const EMOJI = [`sleeping.png`, `smile.png`, `puke.png`, `angry.png`];
+
+const COMMENTS = [`Шляпа `,
+  `Не согласен сам ты шляпа`,
+  `Крутой фильм`,
+  `Да это колыбельная для моих детей)))))`,
+  `Я плакал , уже на 3 -й минуте`,
+  `Ко мне приходит сосед смотреть этот фильм уже 5 -ю пятницу подряд , что делать ?????????`
+];
+
+
+const generateComment = () => {
+  const dueDate = getRandomDate();
+  return {
+    commentId: String(Math.random()),
+    emoji: getRandomArray(EMOJI),
+    comment: getRandomArray(COMMENTS),
+    author: getRandomArray(DetailsNames),
+    date: formatDate(dueDate),
+  };
+};
+const generateComments = (count) => {
+  return new Array(count)
+    .fill(``)
+    .map(generateComment);
+};
+
+
 const generateCard = () => {
+  const getCommentsPopup = generateComments((getRandomNumber(1, 11)));
   return {
     id: Math.random(),
     title: getRandomArray(Films),
@@ -102,7 +132,7 @@ const generateCard = () => {
     genre: getRandomArray(Genre),
     poster: getRandomArray(Posters),
     description: getRandomDescription(),
-    comment: getRandomNumber(1, 10),
+    comment: getCommentsPopup.length,
     age: getRandomArray(AGES),
     director: getRandomArray(DetailsNames),
     writers: new Set(generateListNames(DetailsNames)),
@@ -110,7 +140,8 @@ const generateCard = () => {
     releaseDate: generateDate(),
     watchlist: Math.random() > 0.5,
     watched: Math.random() > 0.5,
-    favorite: Math.random() > 0.5
+    favorite: Math.random() > 0.5,
+    commentsPopup: getCommentsPopup,
   };
 };
 
