@@ -1,7 +1,7 @@
 # Личный проект «Киноман» [![Build status][travis-image]][travis-url]
 
-* Студент: [сергей талызин](https://up.htmlacademy.ru/ecmascript/10/user/1027869).
-* Наставник: `Неизвестно`.
+* Студент: [Сергей Талызин](https://up.htmlacademy.ru/ecmascript/10/user/1027869).
+* Наставник: [Александр Бабченко](https://htmlacademy.ru/profile/babtshe)
 
 ---
 
